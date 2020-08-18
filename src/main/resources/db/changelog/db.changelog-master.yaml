@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - property:
+      name: uuid.type
+      value: 'binary(16)'
+      dbms: mysql
+  - property:
+      name: uuid.type
+      value: uuid
+  - changeSet:
+      id: changeset-1
+      author: rps
+      comment: Creates persons table
+      changes:
+        - createTable:
+            tableName: person
+            remarks: persons registry
+            columns:
+              - column:
+                  name: id
+                  type: ${uuid.type}
+                  remarks: Id of the person
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_person
+              - column:
+                  name: name
+                  type: nvarchar(255)
+                  remarks: name of the person
